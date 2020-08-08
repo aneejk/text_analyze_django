@@ -9,11 +9,11 @@ def about(request):
 def contact(request):
     return render(request, "contact.html")
 def analyze(request):
-    user_text = request.GET.get('text', 'default')
-    removepunc = request.GET.get('removepunc', 'off')
-    fullcaps = request.GET.get('fullcaps', 'off')
-    removextspace = request.GET.get('removextspace', 'off')
-    countwords = request.GET.get('countwords', 'off')
+    user_text = request.POST.get('text', 'default')
+    removepunc = request.POST.get('removepunc', 'off')
+    fullcaps = request.POST.get('fullcaps', 'off')
+    removextspace = request.POST.get('removextspace', 'off')
+    countwords = request.POST.get('countwords', 'off')
     # analyze the text
     if removepunc == "on":
         punc = '''!"#$%&()*+,-'./:;?@]\[^_`{|}~'''
@@ -45,10 +45,6 @@ def analyze(request):
         analyze_text = {'analage' : wordcount}
         return render(request, 'analyze.html', analyze_text)
     else:
-        return HttpResponse("error")
-
-
-#def capfirstletter(request):
-#    return HttpResponse("capletter")
-#def countwords(request):
-#    return HttpResponse("countwords")
+        user_text1= "Sorry we don't find text to analyze"
+        analyze_text = {'analage': user_text1}
+        return render(request, 'analyze.html', analyze_text)

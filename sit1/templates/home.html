@@ -29,7 +29,7 @@
         </form>
 </nav>
 <div class="container">
-    <form action="/analyze" method="get">
+    <form action="/analyze/" method="post">{%csrf_token%}
         <div class="form-group" >
             <label for="text"><b>Enter your TEXT Here:</b></label>
             <textarea class="form-control" name="text" id="text" rows="9"></textarea>
